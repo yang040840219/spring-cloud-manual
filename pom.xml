@@ -23,7 +23,7 @@
     <modules>
         <module>core</module>
         <module>admin</module>
-        <module>server</module>
+        <module>eureka-server</module>
     </modules>
 
     <dependencies>
