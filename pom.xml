@@ -21,9 +21,10 @@
     <version>1.0</version>
 
     <modules>
-        <module>core</module>
+        <module>service-provider</module>
         <module>admin</module>
         <module>eureka-server</module>
+        <module>ribbon-client</module>
     </modules>
 
     <dependencies>

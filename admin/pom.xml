@@ -22,11 +22,6 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.spring-cloud-manual</groupId>
-            <artifactId>core</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
