@@ -3,6 +3,10 @@ package com.client;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
+import org.springframework.cloud.netflix.ribbon.RibbonClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,6 +15,11 @@ import org.springframework.web.client.RestTemplate;
  */
 
 @SpringBootApplication
+// 多个Ribbon 定义
+@RibbonClients({
+        @RibbonClient(name = "service-provider")
+})
+@EnableDiscoveryClient
 public class ClientApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
@@ -18,9 +27,9 @@ public class ClientApplication extends SpringBootServletInitializer {
     }
 
     // 创建 RestTemplate
+    @LoadBalanced  // RestTemplate 增加 ClientHttpInterceptor 行为发生变化
     @Bean
     public RestTemplate createRestTemplate(){
         return new RestTemplate();
     }
-
 }

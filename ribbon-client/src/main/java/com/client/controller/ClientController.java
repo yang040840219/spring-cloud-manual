@@ -15,20 +15,26 @@ public class ClientController {
 
     @Autowired
     private RestTemplate restTemplate ;
-
-
-    @Value("${service.provider.host}")
+    @Value("${service-provider.host}")
     private String serviceProviderHost ;
 
-    @Value("${service.provider.port}")
+    @Value("${service-provider.port}")
     private String serviceProviderPort ;
+
+    @Value("${service-provider.name}")
+    private String serviceProviderName ;
+
 
     @RequestMapping("/greeting")
     public String greeting(){
+        // 直接使用RestTemplate 发送请求
+//        return restTemplate.postForObject("http://"+ serviceProviderHost +":"+ serviceProviderPort +"/service/greeting",
+//                "{\"name\":\"hello\"}", String.class);
 
-        return restTemplate.postForObject("http://"+ serviceProviderHost +":"+ serviceProviderPort +"/service/greeting",
+        // ribbon 通过名称访问， ClientHttpInterceptor --> LoadBalancerInterceptor
+        return restTemplate.postForObject("http://"+ serviceProviderName  +"/service/greeting",
                 "{\"name\":\"hello\"}", String.class);
-
     }
+
 
 }
