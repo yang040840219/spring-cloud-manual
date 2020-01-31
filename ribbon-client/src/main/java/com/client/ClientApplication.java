@@ -1,5 +1,6 @@
 package com.client;
 
+import com.client.config.RibbonConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -17,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 // 多个Ribbon 定义
 @RibbonClients({
-        @RibbonClient(name = "service-provider")
+        @RibbonClient(name = "service-provider", configuration = {RibbonConfiguration.class})
 })
 @EnableDiscoveryClient
 public class ClientApplication extends SpringBootServletInitializer {
