@@ -25,6 +25,7 @@
         <module>admin</module>
         <module>eureka-server</module>
         <module>ribbon-client</module>
+        <module>api</module>
     </modules>
 
     <dependencies>

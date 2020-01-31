@@ -1,4 +1,4 @@
-package com.service.controller;
+package com.provider.web;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
