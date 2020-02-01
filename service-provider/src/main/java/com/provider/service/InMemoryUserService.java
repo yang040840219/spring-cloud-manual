@@ -20,15 +20,13 @@ public class InMemoryUserService implements UserService {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private Map<Integer, User> users = new ConcurrentHashMap<>();
+    private Map<Integer, User> users = new ConcurrentHashMap<Integer, User>();
 
-    @Override
     public boolean saveUser(User user) {
         return users.put(user.getId(), user) == null ;
     }
 
-    @Override
     public List<User> findAll() {
-        return new ArrayList<>(users.values());
+        return new ArrayList<User>(users.values());
     }
 }

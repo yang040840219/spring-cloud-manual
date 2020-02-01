@@ -4,6 +4,7 @@ import com.client.config.RibbonConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
@@ -21,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
         @RibbonClient(name = "service-provider", configuration = {RibbonConfiguration.class})
 })
 @EnableDiscoveryClient
+@EnableCircuitBreaker // 使用服务短路
 public class ClientApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
