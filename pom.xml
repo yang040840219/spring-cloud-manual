@@ -21,6 +21,7 @@
         <module>ribbon-client</module>
         <module>api</module>
         <module>hystrix-dashboard</module>
+        <module>framework-manual</module>
     </modules>
 
     <dependencies>
