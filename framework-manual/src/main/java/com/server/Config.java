@@ -1,4 +1,4 @@
-package com.config;
+package com.server;
 
 import com.aop.Calculate;
 import com.aop.InMemoryCalculate;

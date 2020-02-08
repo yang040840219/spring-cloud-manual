@@ -3,6 +3,7 @@ package com.client.hystrix;
 import com.domain.User;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
+import com.netflix.hystrix.HystrixThreadPoolKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
@@ -17,9 +18,10 @@ public class UserClientHystrixCommand extends HystrixCommand<List<User>> {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     private String serviceProviderName;
     private RestTemplate restTemplate ;
-    public UserClientHystrixCommand(String serviceProviderName, RestTemplate restTemplate) {
+    public UserClientHystrixCommand(String serviceProviderName, RestTemplate restTemplate, int timeout) {
         super(HystrixCommandGroupKey.Factory.asKey("user-client"),
-                100);
+                HystrixThreadPoolKey.Factory.asKey("UserClientHystrixCommand-ThreadPool-" + timeout),
+                timeout) ;
         this.serviceProviderName = serviceProviderName ;
          this.restTemplate = restTemplate ;
 

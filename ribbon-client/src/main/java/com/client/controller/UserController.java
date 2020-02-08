@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerRequest;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -32,6 +34,13 @@ public class UserController {
 
     @Autowired
     private RestTemplate restTemplate ;
+
+    @Value("${dynamic.hystrix.command.timeout}")
+    public int timeout ;
+
+    @Autowired
+    private Environment env ;
+
 
     /**
      * 负载均衡客户端
@@ -65,16 +74,18 @@ public class UserController {
         return "result:" + flag;
     }
 
+
     /**
-     *
      * @return
      */
     @RequestMapping("/user/list")
     public List<User> findAllUser(){
         //String url = "http://"+ serviceProviderName  +"/service/findAll" ;
         //return restTemplate.getForObject(url, List.class);
+
         // 使用 hystrix command
-        UserClientHystrixCommand command = new UserClientHystrixCommand(serviceProviderName, restTemplate);
+        int ctimeout = env.getProperty("dynamic.hystrix.command.timeout", int.class, 100);
+        UserClientHystrixCommand command = new UserClientHystrixCommand(serviceProviderName, restTemplate, ctimeout);
         return command.execute();
     }
 }
