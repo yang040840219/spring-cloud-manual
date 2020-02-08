@@ -24,7 +24,7 @@ public class ClientApplication extends SpringBootServletInitializer {
     @Autowired
     private ContextRefresher contextRefresher ;
     /**
-     * 定时更新配置
+     * 定时更新配置,调整内存中的内容
      */
     @Scheduled(fixedRate = 1000000L)
     public void updateConfig(){

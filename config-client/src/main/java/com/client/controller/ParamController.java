@@ -25,4 +25,8 @@ public class ParamController {
         return name;
     }
 
+    @RequestMapping("/getEnv")
+    public String getEnv(String key){
+        return env.getProperty(key);
+    }
 }
