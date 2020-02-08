@@ -23,6 +23,7 @@
         <module>hystrix-dashboard</module>
         <module>framework-manual</module>
         <module>config-server</module>
+        <module>config-client</module>
     </modules>
 
     <dependencies>
