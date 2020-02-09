@@ -64,7 +64,7 @@ public class UserController {
                             String serviceProviderHost = instance.getHost();
                             int serviceProviderPort = instance.getPort();
                             RestTemplate restTemplate = new RestTemplate();
-                            String url = "http://" + serviceProviderHost + ":" + serviceProviderPort + "/service/saveUser";
+                            String url = "http://" + serviceProviderHost + ":" + serviceProviderPort + "/user/saveUser";
                             return restTemplate.postForObject(url, user, Boolean.class);
                         }
                     });

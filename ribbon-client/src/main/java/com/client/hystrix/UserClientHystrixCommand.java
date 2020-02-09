@@ -32,7 +32,7 @@ public class UserClientHystrixCommand extends HystrixCommand<List<User>> {
      * @throws Exception
      */
     protected List<User> run() throws Exception {
-        String url = "http://"+ serviceProviderName  +"/service/findAll" ;
+        String url = "http://"+ serviceProviderName  +"/user/findAll" ;
         return restTemplate.getForObject(url, List.class);
     }
     /**

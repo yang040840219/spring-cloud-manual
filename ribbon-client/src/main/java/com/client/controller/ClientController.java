@@ -32,7 +32,7 @@ public class ClientController {
 //                "{\"name\":\"hello\"}", String.class);
 
         // ribbon 通过名称访问， ClientHttpInterceptor --> LoadBalancerInterceptor
-        return restTemplate.postForObject("http://"+ serviceProviderName  +"/service/greeting",
+        return restTemplate.postForObject("http://"+ serviceProviderName  +"/greeting",
                 "{\"name\":\"hello\"}", String.class);
     }
 

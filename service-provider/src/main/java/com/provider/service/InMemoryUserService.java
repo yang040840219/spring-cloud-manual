@@ -15,14 +15,14 @@ import java.util.concurrent.ConcurrentHashMap;
  * 2020/1/31
  */
 
-@Service
+@Service(value = "inMemoryUserService")
 public class InMemoryUserService implements UserService {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private Map<Integer, User> users = new ConcurrentHashMap<Integer, User>();
 
-    public boolean saveUser(User user) {
+    public Boolean saveUser(User user) {
         return users.put(user.getId(), user) == null ;
     }
 
